@@ -1,0 +1,37 @@
+[
+  {
+    "username": "admin",
+    "password": "password123",
+    "email": "admin@cooklab.com"
+  },
+  {
+    "username": "vadim",
+    "email": "vadimdenisovpsvu2@gmail.com",
+    "password": "1234"
+  },
+  {
+    "username": "AiramG",
+    "email": "Airam",
+    "password": "$2b$10$LTFjxYLSPUVy0m/SI9MkAO4T.dakepFZ3YsIewyNNBjwnA8SUIuT2"
+  },
+  {
+    "username": "1231312",
+    "email": "321213",
+    "password": "$2b$10$UREmsrnF/f8xLAK6vA4HPO0fPmrJsqtXAE9RuD3PpBNZhyRDebRq."
+  },
+  {
+    "username": "vadim1234",
+    "email": "vadim1234@gmail.com",
+    "password": "$2b$10$OwF8rtXaz.EtI6uzwgTHpe7Hq.FVcPMWwnjM1qN6C/zza1jKqaL82"
+  },
+  {
+    "username": "VadimDenisov",
+    "email": "vadimdenisovpsvu@gmail.com",
+    "password": "$2b$10$VlhS.Sd9pPTN.CR7hklZOu2OVX6HO7S7pMlLSIEfEcjuxQM.vJitG"
+  },
+  {
+    "username": "AiramGuadalupe",
+    "email": "airamguadaluope@gmail.com",
+    "password": "$2b$10$TCJtl8lEehMoyoq.rgy0uuGjJNlSxGzeFtytjl8if9hzQdN0TpYHy"
+  }
+]

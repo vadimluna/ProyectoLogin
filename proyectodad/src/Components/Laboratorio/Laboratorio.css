@@ -1,0 +1,300 @@
+.content-area {
+    flex-grow: 1; 
+    padding: 30px;
+    position: relative;
+    background-color: #fcfcfc;
+    overflow-y: auto;
+}
+
+.header-icons {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    gap: 20px;
+    font-size: 1.8rem;
+    color: #6a6a6a;
+    background-color: #fff;
+    padding: 8px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.header-icons span {
+    transition: color 0.2s;
+}
+
+.header-icons span:hover {
+    color: #3d0952;
+}
+
+.laboratorio-content {
+    padding-top: 60px;
+}
+
+.laboratorio-content h2 {
+    color: #1e6f75;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.experiment-panels {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.ingredient-panel, .notes-panel {
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+}
+
+.ingredient-panel {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.notes-panel {
+    flex-grow: 1;
+    max-width: 600px;
+}
+
+.ingredient-panel input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.plus-sign {
+    font-size: 2rem;
+    color: #c78f2e;
+    font-weight: 700;
+}
+
+.btn-lab {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+    font-weight: 600;
+}
+
+.btn-lab.primary {
+    background-color: #1e6f75;
+    color: white;
+    box-shadow: 0 3px #13484b;
+}
+
+.btn-lab.primary:hover {
+    background-color: #2a949b;
+    transform: translateY(-1px);
+}
+
+.btn-lab.primary:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px #13484b;
+}
+
+.btn-lab.secondary {
+    background-color: #3d0952;
+    color: white;
+    box-shadow: 0 3px #2a063b;
+}
+
+.btn-lab.secondary:hover {
+    background-color: #551478;
+    transform: translateY(-1px);
+}
+
+.btn-lab.secondary:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px #2a063b;
+}
+
+.btn-lab.tertiary {
+    background-color: #c78f2e;
+    color: #3d0952;
+    box-shadow: 0 3px #9e7124;
+}
+
+.btn-lab.tertiary:hover {
+    background-color: #e09f3c;
+    transform: translateY(-1px);
+}
+
+.btn-lab.tertiary:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px #9e7124;
+}
+
+.notes-panel textarea {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    resize: vertical;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.notes-panel p {
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.notes-panel input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+/* Estilos para RecetasView.tsx */
+.recetas-container {
+    padding-top: 30px;
+}
+
+.recetas-container h2 {
+    color: #3d0952; 
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.recetas-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+    border-color: #c78f2e;
+}
+
+.search-bar .search-icon {
+    margin-right: 15px;
+    color: #c78f2e;
+    font-size: 1.2rem;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    padding: 0;
+}
+
+.recetas-toolbar .btn-lab.secondary {
+    width: auto;
+    padding: 10px 25px;
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.recetas-table-wrapper {
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    margin: 0 20px;
+}
+
+.recetas-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.recetas-table th, .recetas-table td {
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.recetas-table th {
+    background-color: #f7f7f7;
+    color: #1e6f75;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.recetas-table tr:last-child td {
+    border-bottom: none;
+}
+
+.recetas-table tr:hover {
+    background-color: #fafafa;
+}
+
+.recetas-table .actions {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.recetas-table .btn-lab {
+    width: auto;
+    padding: 8px 15px;
+    margin: 0;
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+
+.recetas-table .btn-lab.edit {
+    background-color: #3d0952;
+    color: white;
+}
+.recetas-table .btn-lab.edit:hover {
+    background-color: #551478;
+}
+
+.recetas-table .btn-lab.delete {
+    background-color: #c78f2e;
+    color: white;
+}
+.recetas-table .btn-lab.delete:hover {
+    background-color: #e09f3c;
+}

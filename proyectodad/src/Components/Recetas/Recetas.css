@@ -1,0 +1,133 @@
+.recetas-content {
+    margin-top: 20px;
+    padding: 20px 0;
+}
+
+.recetas-title {
+    color: #1e6f75;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    border-bottom: 3px solid #e5bfa2;
+    display: inline-block;
+}
+
+.search-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 8px 15px;
+    width: 60%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.search-icon {
+    margin-right: 10px;
+    color: #555;
+}
+
+.search-input-wrapper input {
+    border: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    outline: none;
+}
+
+.add-recipe-btn {
+    background-color: #4b8a8a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-recipe-btn:hover {
+    background-color: #3b7272;
+}
+
+/* Tabla de Recetas */
+.recipes-table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #e5bfa2;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.edit-btn {
+    background-color: #f0f0f0;
+}
+
+.edit-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.delete-btn {
+    background-color: #fbdada;
+    color: #cc3333;
+    border-color: #cc3333;
+}
+
+.delete-btn:hover {
+    background-color: #f9caca;
+}
+
+
+
+.sidebar-menu li.active {
+    background-color: #2a9d8f;
+    letter-spacing: 1px;
+    position: relative;
+    font-weight: 800;
+}
