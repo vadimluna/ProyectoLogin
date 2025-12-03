@@ -1,6 +1,5 @@
 import React from "react";
 import "./Sidebar.css";
-import logo from "./logo.svg";
 
 type Page =
   | "Laboratorio"
@@ -15,17 +14,19 @@ interface SidebarProps {
   onLogout: () => void;
   onNavigate: (page: Page) => void;
   currentPage: Page;
+  username?: string;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   onLogout,
   onNavigate,
   currentPage,
+  username = "Usuario",
 }) => {
   const menuItems: Page[] = [
     "Laboratorio",
-    "Cocina",
     "Mis recetas",
+    "Cocina",
     "Enciclopedia",
     "Desafío",
     "Historial",
@@ -34,33 +35,44 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div className="sidebar">
-      <div className="sidebar-logo">
-        <img alt="CookLab logo" />
-        <h1 className="sidebar-title">
+      {}
+      <div className="sidebar-brand">
+        <h1 className="brand-title">
           <span className="cook">Cook</span>
           <span className="lab">Lab</span>
         </h1>
-        <p>Laboratorio de sabores</p>
+        <p className="brand-subtitle">Laboratorio de sabores</p>
       </div>
 
-      <div className="sidebar-divider"></div>
+      {}
+      <div className="separator-line"></div>
 
-      <div className="sidebar-menu">
-        <ul>
-          {menuItems.map((item) => (
-            <li
-              key={item}
-              className={currentPage === item ? "active" : ""}
-              onClick={() => onNavigate(item)}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+      {}
+      <div className="sidebar-profile">
+        <div className="avatar-circle">{username.charAt(0).toUpperCase()}</div>
+        <div className="profile-info">
+          <h3>{username}</h3>
+          <span>Chef Ejecutivo</span>
+        </div>
       </div>
 
-      <div className="sidebar-logout">
-        <button onClick={onLogout}>Salir</button>
+      <ul className="sidebar-menu">
+        {menuItems.map((item) => (
+          <li
+            key={item}
+            className={currentPage === item ? "active" : ""}
+            onClick={() => onNavigate(item)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      
+      <div className="sidebar-footer">
+        <div className="separator-line"></div>
+        <button className="logout-btn" onClick={onLogout}>
+          Cerrar Sesión
+        </button>
       </div>
     </div>
   );

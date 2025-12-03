@@ -134,3 +134,4 @@ const RegisterView: React.FC<RegisterViewProps> = ({ onBackToLogin }) => {
 };
 
 export default RegisterView;
+  

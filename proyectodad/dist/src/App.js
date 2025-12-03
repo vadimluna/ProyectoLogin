@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 require("./App.css");
-const logo_svg_1 = __importDefault(require("./logo.svg"));
-const LaboratorioView_1 = __importDefault(require("./Components/LaboratorioView"));
-const Registerview_1 = __importDefault(require("./Components/Registerview"));
-const Sidebar_1 = __importDefault(require("./Components/Sidebar"));
+const LaboratorioView_1 = __importDefault(require("./Components/Laboratorio/LaboratorioView"));
+const RecetasView_1 = __importDefault(require("./Components/Recetas/RecetasView"));
+const Registerview_1 = __importDefault(require("./Components/Register/Registerview"));
+const Sidebar_1 = __importDefault(require("./Components/Sidebar/Sidebar"));
 function App() {
     const [loggedIn, setLoggedIn] = (0, react_1.useState)(false);
     const [currentPage, setCurrentPage] = (0, react_1.useState)("Laboratorio");
@@ -17,52 +17,67 @@ function App() {
     const [password, setPassword] = (0, react_1.useState)("");
     const [error, setError] = (0, react_1.useState)("");
     const [viewMode, setViewMode] = (0, react_1.useState)("login");
+    (0, react_1.useEffect)(() => {
+        const isLogged = localStorage.getItem("isLogged");
+        if (isLogged === "true") {
+            setLoggedIn(true);
+        }
+    }, []);
+    const handleLogout = () => {
+        localStorage.removeItem("isLogged");
+        setLoggedIn(false);
+        setUsername("");
+        setPassword("");
+        setError("");
+        setViewMode("login");
+        setCurrentPage("Laboratorio");
+    };
     const handleLogin = async () => {
         setError("");
         if (!username || !password) {
-            setError("Por favor, ingrese el usuario y la contraseña.");
+            setError("Por favor, ingresa tus credenciales.");
             return;
         }
         try {
             const response = await fetch("http://localhost:3001/api/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
             });
             if (response.ok) {
+                localStorage.setItem("isLogged", "true");
                 setLoggedIn(true);
-                setCurrentPage("Laboratorio");
                 setError("");
                 setViewMode("login");
             }
             else {
                 const errorData = await response.json();
-                setError(errorData.message || "Usuario o contraseña incorrectos.");
+                setError(errorData.message || "Credenciales incorrectas.");
             }
         }
         catch (err) {
-            setError("Error de conexión con el servidor. Asegúrate de que tu backend está corriendo en http://localhost:3001.");
-            console.error("Login error:", err);
+            setError("Error: No se pudo conectar con el servidor.");
         }
     };
-    const handleLogout = () => {
-        setLoggedIn(false);
-        setViewMode("login");
-        setUsername("");
-        setPassword("");
+    const renderContent = () => {
+        switch (currentPage) {
+            case "Laboratorio":
+                return (0, jsx_runtime_1.jsx)(LaboratorioView_1.default, {});
+            case "Mis recetas":
+                return (0, jsx_runtime_1.jsx)(RecetasView_1.default, {});
+            default:
+                return ((0, jsx_runtime_1.jsxs)("div", { style: { padding: "40px", textAlign: "center", color: "#555" }, children: [(0, jsx_runtime_1.jsx)("h1", { children: currentPage }), (0, jsx_runtime_1.jsx)("p", { children: "Pr\u00F3ximamente..." })] }));
+        }
     };
-    const renderLoginView = () => ((0, jsx_runtime_1.jsx)("div", { className: "login-container", children: (0, jsx_runtime_1.jsxs)("div", { className: "login-card", children: [(0, jsx_runtime_1.jsx)("img", { src: logo_svg_1.default, alt: "CookLab logo", className: "logo" }), (0, jsx_runtime_1.jsxs)("h1", { className: "title", children: [(0, jsx_runtime_1.jsx)("span", { className: "cook", children: "Cook" }), (0, jsx_runtime_1.jsx)("span", { className: "lab", children: "Lab" })] }), (0, jsx_runtime_1.jsx)("p", { className: "subtitle", children: "Laboratorio de sabores" }), (0, jsx_runtime_1.jsx)("h2", { className: "welcome", children: "\u00A1Bienvenido al laboratorio del sabor!" }), (0, jsx_runtime_1.jsxs)("div", { className: "inputs", children: [(0, jsx_runtime_1.jsx)("input", { type: "text", placeholder: "Usuario", value: username, onChange: (e) => setUsername(e.target.value) }), (0, jsx_runtime_1.jsx)("input", { type: "password", placeholder: "Contrase\u00F1a", value: password, onChange: (e) => setPassword(e.target.value) })] }), error && (0, jsx_runtime_1.jsx)("div", { className: "message error", children: error }), (0, jsx_runtime_1.jsxs)("div", { className: "buttons", children: [(0, jsx_runtime_1.jsx)("button", { className: "btn enter", onClick: handleLogin, children: "Entrar" }), (0, jsx_runtime_1.jsx)("button", { className: "btn register", onClick: () => {
-                                setViewMode("register");
-                                setError("");
-                            }, children: "Registrarse" }), (0, jsx_runtime_1.jsx)("button", { className: "btn recover", children: "Recuperar contrase\u00F1a" })] }), (0, jsx_runtime_1.jsxs)("div", { className: "icons", children: [(0, jsx_runtime_1.jsx)("span", { className: "icon", children: "\uD83D\uDD0A" }), (0, jsx_runtime_1.jsx)("span", { className: "icon", children: "\u2753" }), (0, jsx_runtime_1.jsx)("span", { className: "icon", children: "\u2699\uFE0F" })] })] }) }));
-    const renderMainContent = () => ((0, jsx_runtime_1.jsxs)("div", { style: { display: "flex", height: "100vh" }, children: [(0, jsx_runtime_1.jsx)(Sidebar_1.default, { onLogout: handleLogout, onNavigate: setCurrentPage, currentPage: currentPage }), (0, jsx_runtime_1.jsx)("main", { style: { flexGrow: 1, padding: "20px" }, children: (0, jsx_runtime_1.jsx)(LaboratorioView_1.default, { currentPage: currentPage, setCurrentPage: setCurrentPage, onLogout: handleLogout }) })] }));
+    const renderLoginView = () => ((0, jsx_runtime_1.jsx)("div", { className: "login-wrapper", children: (0, jsx_runtime_1.jsxs)("div", { className: "login-box", children: [(0, jsx_runtime_1.jsx)("div", { className: "login-banner", children: (0, jsx_runtime_1.jsxs)("div", { className: "banner-content", children: [(0, jsx_runtime_1.jsx)("h1", { children: "CookLab" }), (0, jsx_runtime_1.jsx)("p", { children: "Tu laboratorio de sabores" })] }) }), (0, jsx_runtime_1.jsxs)("div", { className: "login-form-section", children: [(0, jsx_runtime_1.jsx)("h2", { children: "Bienvenido mi chef!" }), (0, jsx_runtime_1.jsx)("p", { className: "login-subtitle", children: "Por favor inicia sesi\u00F3n en tu cuenta" }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDC64" }), (0, jsx_runtime_1.jsx)("input", { type: "text", placeholder: "Usuario/Correo electr\u00F3nico", value: username, onChange: (e) => setUsername(e.target.value), autoComplete: "off" })] }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDD12" }), (0, jsx_runtime_1.jsx)("input", { type: "password", placeholder: "Contrese\u00F1a", value: password, onChange: (e) => setPassword(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleLogin(), autoComplete: "new-password" })] }), (0, jsx_runtime_1.jsx)("div", { className: "form-options", children: (0, jsx_runtime_1.jsx)("span", { className: "forgot-pass", children: "\u00BFOlvidaste tu contrase\u00F1a?" }) }), error && (0, jsx_runtime_1.jsx)("div", { className: "error-msg", children: error }), (0, jsx_runtime_1.jsx)("button", { className: "btn-login", onClick: handleLogin, children: "Login" }), (0, jsx_runtime_1.jsxs)("p", { className: "register-text", children: ["\u00BFNuevo aqu\u00ED?", " ", (0, jsx_runtime_1.jsx)("span", { onClick: () => setViewMode("register"), children: "Crear cuenta" })] })] })] }) }));
     if (loggedIn) {
-        return renderMainContent();
+        return ((0, jsx_runtime_1.jsxs)("div", { className: "app-layout", children: [(0, jsx_runtime_1.jsx)(Sidebar_1.default, { onLogout: handleLogout, onNavigate: setCurrentPage, currentPage: currentPage, username: username || "Chef" }), (0, jsx_runtime_1.jsx)("main", { className: "main-content", children: renderContent() })] }));
     }
     if (viewMode === "register") {
-        return (0, jsx_runtime_1.jsx)(Registerview_1.default, { onBackToLogin: () => setViewMode("login") });
+        return ((0, jsx_runtime_1.jsx)(Registerview_1.default, { onBackToLogin: (msg) => {
+                setViewMode("login");
+                setError(msg);
+            } }));
     }
     return renderLoginView();
 }

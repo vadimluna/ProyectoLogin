@@ -1,5 +1,5 @@
 import React from "react";
-import "./Laboratorio.css";
+import "../Laboratorio/Laboratorio.css";
 
 const mockRecipes = [
   {
