@@ -1,34 +1,43 @@
 import React from "react";
-import "../Laboratorio/Laboratorio.css";
+import "./Recetas.css"; // Asegúrate de importar el CSS correcto
 
 const mockRecipes = [
   {
     id: 1,
-    name: "Receta de Prueba 1",
+    name: "Paella de la Abuela",
     ingredients: "Sal, Pimienta, Harina, Pollo",
-    reference: "Familia: Paella de la Abuela",
+    reference: "Familia",
+    complexity: "Alta" // Nuevo dato
   },
   {
     id: 2,
-    name: "Receta de Prueba 2",
+    name: "Pasta Carbonara",
     ingredients: "Huevo, Queso, Pasta, Bacon",
-    reference: "Libro: Recetas Italianas",
+    reference: "Libro Italiano",
+    complexity: "Media" // Nuevo dato
   },
   {
     id: 3,
-    name: "Receta de Prueba 3",
-    ingredients: "Azúcar, Mantequilla, Chocolate, Leche",
-    reference: "Web: postresfaciles.com",
+    name: "Brownie Express",
+    ingredients: "Azúcar, Mantequilla, Chocolate",
+    reference: "Web",
+    complexity: "Baja" // Nuevo dato
   },
   {
     id: 4,
-    name: "Receta de Prueba 4",
+    name: "Ensalada Detox",
     ingredients: "Tomate, Cebolla, Pepino, Limón",
-    reference: "Propia: Ensalada Detox",
+    reference: "Propia",
+    complexity: "Baja" // Nuevo dato
   },
 ];
 
 const RecetasView: React.FC = () => {
+  // Función auxiliar para clase de color según complejidad
+  const getComplexityClass = (complexity: string) => {
+    return complexity.toLowerCase(); // 'baja', 'media', 'alta'
+  };
+
   return (
     <div className="recetas-container">
       <h2>Mis recetas guardadas</h2>
@@ -38,10 +47,12 @@ const RecetasView: React.FC = () => {
           <span className="search-icon">🔍</span>
           <input
             type="text"
-            placeholder="Buscar la receta, ingredientes y etc."
+            placeholder="Buscar receta, ingredientes..."
           />
         </div>
-        <button className="btn-lab secondary">+ Añadir una nueva receta</button>
+        <button className="btn-lab secondary">
+          <span>+</span> Añadir nueva receta
+        </button>
       </div>
 
       <div className="recetas-table-wrapper">
@@ -50,6 +61,7 @@ const RecetasView: React.FC = () => {
             <tr>
               <th>Nombre</th>
               <th>Ingredientes</th>
+              <th>Complejidad</th> {/* Nueva Columna */}
               <th>Referencia</th>
               <th>Acción</th>
             </tr>
@@ -59,10 +71,15 @@ const RecetasView: React.FC = () => {
               <tr key={recipe.id}>
                 <td>{recipe.name}</td>
                 <td>{recipe.ingredients}</td>
+                <td>
+                  <span className={`badge-complexity ${getComplexityClass(recipe.complexity)}`}>
+                    {recipe.complexity}
+                  </span>
+                </td>
                 <td>{recipe.reference}</td>
                 <td className="actions">
-                  <button className="btn-lab edit">editar</button>
-                  <button className="btn-lab delete">borrar</button>
+                  <button className="btn-lab edit">✏️</button>
+                  <button className="btn-lab delete">🗑️</button>
                 </td>
               </tr>
             ))}

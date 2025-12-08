@@ -1,132 +1,270 @@
-.recetas-content {
-    margin-top: 20px;
-    padding: 20px 0;
+/* =========================================
+   RECETAS VIEW - ALINEACIÓN PERFECTA V6
+   ========================================= */
+
+.recetas-container {
+    padding: 40px 60px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+    animation: fadeIn 0.6s ease-out forwards;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-.recetas-title {
-    color: #1e6f75;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-    padding: 10px 20px;
-    border-bottom: 3px solid #e5bfa2;
-    display: inline-block;
+/* --- TÍTULO --- */
+.recetas-container h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #3d0952;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+    position: relative;
 }
 
-.search-bar-container {
+.recetas-container h2::before {
+    content: "📜 "; 
+    margin-right: 10px;
+}
+
+.recetas-container h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #1e6f75, #c78f2e);
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+/* --- BARRA DE HERRAMIENTAS --- */
+.recetas-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 55px;
+    box-sizing: border-box;
+    /* Ajuste clave: padding cero para control manual de márgenes */
+    padding: 0; 
 }
 
-.search-input-wrapper {
+.search-bar {
     display: flex;
     align-items: center;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 8px 15px;
-    width: 60%;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 0 25px;
+    height: 100%;
+    width: 450px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    /* MOVIDO A LA DERECHA (Alineación con borde tarjeta) */
+    margin-left: 20px; 
+}
+
+.search-bar:focus-within {
+    border-color: #1e6f75;
+    box-shadow: 0 4px 20px rgba(30, 111, 117, 0.2);
+    transform: translateY(-1px);
 }
 
 .search-icon {
-    margin-right: 10px;
-    color: #555;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: #c78f2e;
 }
 
-.search-input-wrapper input {
+.search-bar input {
     border: none;
-    flex-grow: 1;
+    background: transparent;
+    outline: none;
+    font-size: 1.05rem;
+    width: 100%;
+    color: #495057;
+    height: 100%;
+}
+
+/* Botón Añadir Receta */
+.recetas-toolbar .btn-lab.secondary {
+    background: linear-gradient(135deg, #3d0952 0%, #5e1b75 100%);
+    color: white;
+    padding: 0 35px;
+    height: 100%;
+    border-radius: 16px;
+    font-weight: 700;
     font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(61, 9, 82, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    /* MOVIDO A LA DERECHA (Pegado al borde derecho para alinear con tarjeta) */
+    margin-right: 0; 
+    /* Pequeño ajuste visual para compensar sombra */
+    transform: translateX(5px); 
+}
+
+.recetas-toolbar .btn-lab.secondary:hover {
+    transform: translateX(5px) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(61, 9, 82, 0.35);
+}
+
+/* --- TABLA --- */
+.recetas-table-wrapper {
+    width: 100%;
+    overflow: visible; 
+}
+
+.recetas-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 18px; 
+    margin-top: -18px;
+}
+
+/* Cabecera */
+.recetas-table thead th {
+    color: #6c757d;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 0 35px 10px 35px;
+    text-align: left;
+    border: none;
+    opacity: 0.8;
+}
+
+.recetas-table thead th:last-child {
+    text-align: center;
+}
+
+/* Cuerpo (Tarjetas) */
+.recetas-table tbody tr {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    border-radius: 20px; 
+}
+
+.recetas-table tbody tr td:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.recetas-table tbody tr td:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.recetas-table tbody tr:hover {
+    transform: scale(1.015) translateY(-2px);
+    box-shadow: 0 15px 35px -5px rgba(30, 111, 117, 0.15);
+    z-index: 10;
+    position: relative;
+}
+
+.recetas-table td {
+    padding: 28px 35px;
+    color: #555;
+    font-size: 1.05rem;
+    vertical-align: middle;
+    background-color: white;
+    border: none; 
+}
+
+/* --- NOMBRES DE RECETAS (Estilo Mejorado) --- */
+.recetas-table td:first-child {
+    font-weight: 800; /* Letra muy gruesa */
+    color: #3d0952; /* Color morado principal */
+    font-size: 1.4rem; /* Texto más grande */
+    letter-spacing: -0.5px;
+    /* Sombra suave para darle volumen al texto */
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.05); 
+    transition: color 0.2s ease;
+}
+
+/* Efecto al pasar el mouse por la fila */
+.recetas-table tbody tr:hover td:first-child {
+    color: #1e6f75; /* Cambia a cian al hacer hover */
+}
+
+/* Badge Complejidad */
+.badge-complexity {
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge-complexity.baja { background-color: #dcfce7; color: #166534; }
+.badge-complexity.media { background-color: #ffedd5; color: #9a3412; }
+.badge-complexity.alta { background-color: #fee2e2; color: #991b1b; }
+
+/* Botones de acción */
+.actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.recetas-table .btn-lab {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 14px;
+    font-size: 1.4rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
     outline: none;
 }
 
-.add-recipe-btn {
-    background-color: #4b8a8a;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Editar */
+.recetas-table .btn-lab.edit { 
+    background-color: #f0fdfa; 
+    border: 1px solid #ccfbf1;
 }
-
-.add-recipe-btn:hover {
-    background-color: #3b7272;
+.recetas-table .btn-lab.edit:hover { 
+    background-color: #3d0952; 
+    border-color: #3d0952;
+    transform: translateY(-4px) rotate(-5deg);
+    box-shadow: 0 5px 15px rgba(61, 9, 82, 0.2);
 }
+.recetas-table .btn-lab.edit:hover::after { content: '✏️'; filter: grayscale(1) invert(1); }
 
-.recipes-table-container {
-    overflow-x: auto;
+/* Borrar */
+.recetas-table .btn-lab.delete { 
+    background-color: #fff1f2; 
+    border: 1px solid #ffe4e6;
 }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.recetas-table .btn-lab.delete:hover { 
+    background-color: #c92a2a; 
+    border-color: #c92a2a;
+    transform: translateY(-4px) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(201, 42, 42, 0.2);
 }
+.recetas-table .btn-lab.delete:hover::after { content: '🗑️'; filter: grayscale(1) invert(1); }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-th {
-    background-color: #e5bfa2;
-    color: #333;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-.actions-cell {
-    display: flex;
-    gap: 10px;
-}
-
-.action-btn {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: background-color 0.2s;
-}
-
-.edit-btn {
-    background-color: #f0f0f0;
-}
-
-.edit-btn:hover {
-    background-color: #e0e0e0;
-}
-
-.delete-btn {
-    background-color: #fbdada;
-    color: #cc3333;
-    border-color: #cc3333;
-}
-
-.delete-btn:hover {
-    background-color: #f9caca;
-}
-
-
-
-.sidebar-menu li.active {
-    background-color: #2a9d8f;
-    letter-spacing: 1px;
-    position: relative;
-    font-weight: 800;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
