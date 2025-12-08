@@ -7,7 +7,69 @@
   {
     "username": "vadim",
     "email": "vadimdenisovpsvu2@gmail.com",
-    "password": "1234"
+    "password": "1234",
+    "reports": [
+      {
+        "id": "1764780004634",
+        "titulo": "3321",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "312321312",
+        "observaciones": "observaciones"
+      },
+      {
+        "id": "1764780656611",
+        "titulo": "3123123121312",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "21312",
+        "observaciones": "1231"
+      },
+      {
+        "id": "1764780660840",
+        "titulo": "321",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "21312",
+        "observaciones": "1231"
+      },
+      {
+        "id": "1764780661745",
+        "titulo": "321",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "21312",
+        "observaciones": "1231"
+      },
+      {
+        "id": "1764780662335",
+        "titulo": "321",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "21312",
+        "observaciones": "1231"
+      },
+      {
+        "id": "1764780778214",
+        "titulo": "3123123121312",
+        "autor": "vadim",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "21312",
+        "observaciones": "1231"
+      }
+    ]
   },
   {
     "username": "AiramG",
@@ -33,5 +95,42 @@
     "username": "AiramGuadalupe",
     "email": "airamguadaluope@gmail.com",
     "password": "$2b$10$TCJtl8lEehMoyoq.rgy0uuGjJNlSxGzeFtytjl8if9hzQdN0TpYHy"
+  },
+  {
+    "username": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "$2b$10$jfIcbPv5B7w/ZWD0FDlFsOBqDJy5Rx/1UZZN//KiAj5Ct5KRYRWj.",
+    "reports": [
+      {
+        "id": "1764779133111",
+        "titulo": "32131",
+        "autor": "Admin",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "fdfsdfsdf",
+        "observaciones": "32131231"
+      },
+      {
+        "id": "1764779162723",
+        "titulo": "321312213",
+        "autor": "Admin",
+        "departamento": "Cocina",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "vads",
+        "observaciones": "vadim"
+      },
+      {
+        "id": "1764779425051",
+        "titulo": "32131231231",
+        "autor": "Admin",
+        "departamento": "Logística",
+        "fechaIncidencia": "2025-12-03",
+        "prioridad": "Normal",
+        "contenido": "12312312312312",
+        "observaciones": "23131231"
+      }
+    ]
   }
 ]

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Sidebar.css";
 
+// Añadimos "Informes" al tipo Page aquí también
 type Page =
   | "Laboratorio"
   | "Mis recetas"
@@ -8,7 +9,8 @@ type Page =
   | "Enciclopedia"
   | "Desafío"
   | "Historial"
-  | "Ajustes";
+  | "Ajustes"
+  | "Informes";
 
 interface SidebarProps {
   onLogout: () => void;
@@ -23,6 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   currentPage,
   username = "Usuario",
 }) => {
+  // Añadimos "Informes" a la lista del menú
   const menuItems: Page[] = [
     "Laboratorio",
     "Mis recetas",
@@ -30,12 +33,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     "Enciclopedia",
     "Desafío",
     "Historial",
+    "Informes",
     "Ajustes",
   ];
 
   return (
     <div className="sidebar">
-      {}
+      {/* Brand */}
       <div className="sidebar-brand">
         <h1 className="brand-title">
           <span className="cook">Cook</span>
@@ -44,10 +48,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         <p className="brand-subtitle">Laboratorio de sabores</p>
       </div>
 
-      {}
+      {/* Separator */}
       <div className="separator-line"></div>
 
-      {}
+      {/* Profile */}
       <div className="sidebar-profile">
         <div className="avatar-circle">{username.charAt(0).toUpperCase()}</div>
         <div className="profile-info">
@@ -67,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </li>
         ))}
       </ul>
-      
+
       <div className="sidebar-footer">
         <div className="separator-line"></div>
         <button className="logout-btn" onClick={onLogout}>
