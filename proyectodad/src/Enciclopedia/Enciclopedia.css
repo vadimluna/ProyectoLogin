@@ -1,0 +1,291 @@
+.enciclopedia-container {
+  padding: 40px;
+  padding-top: 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.wiki-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--input-border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background: var(--hover-item-bg);
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--accent-gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(100, 65, 165, 0.3);
+}
+
+.btn-add-wiki {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s;
+}
+
+.btn-add-wiki:hover {
+  transform: translateY(-2px);
+}
+
+.wiki-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.wiki-card {
+  background: var(--bg-card);
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-card);
+  cursor: pointer; /* Indica que es clicable */
+}
+
+.wiki-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-color: var(--accent-color);
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  background: var(--hover-item-bg);
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-content { flex: 1; }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-top h4 {
+  margin: 0;
+  color: var(--text-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.badge-cat {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.badge-cat.ingrediente { background: #d1fae5; color: #065f46; }
+.badge-cat.técnica { background: #dbeafe; color: #1e40af; }
+.badge-cat.química { background: #fce7f3; color: #9d174d; }
+.badge-cat.teoría { background: #fffbeb; color: #92400e; }
+
+.desc-preview {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wiki-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.2s;
+}
+
+.wiki-modal {
+  background: var(--bg-card);
+  width: 600px;
+  max-width: 90%;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  border: 1px solid var(--input-border);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--input-border);
+  padding-bottom: 15px;
+}
+
+.big-icon {
+  font-size: 4rem;
+  background: var(--hover-item-bg);
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-header h2 {
+  margin: 0 0 10px 0;
+  color: var(--text-heading);
+  font-size: 2rem;
+}
+
+.badge-cat.large {
+  font-size: 0.9rem;
+  padding: 5px 12px;
+}
+
+.detail-body { margin-bottom: 30px; }
+
+.main-desc {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.detail-row {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.detail-row strong { color: var(--accent-color); }
+
+.user-notes-box {
+  margin-top: 20px;
+  background: var(--hover-item-bg);
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.user-notes-box strong { display: block; margin-bottom: 5px; color: var(--text-heading); }
+.user-notes-box p { margin: 0; color: var(--text-primary); font-style: italic; }
+
+.wiki-form h3 {
+  margin-top: 0;
+  color: var(--text-heading);
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.modal-actions.right {
+  justify-content: flex-end;
+}
+
+.btn-edit {
+  background: var(--bg-page);
+  border: 1px solid var(--input-border);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-edit:hover { background: var(--hover-item-bg); border-color: var(--accent-color); }
+
+.btn-delete {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-text);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-save {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

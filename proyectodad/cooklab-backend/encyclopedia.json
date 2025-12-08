@@ -1,0 +1,81 @@
+[
+  {
+    "id": 1,
+    "title": "Ajo Negro",
+    "category": "Ingrediente",
+    "description": "Ajo madurado a altas temperaturas. Sabor umami, dulce y balsámico.",
+    "pairings": "Trufa, Champiñones, Cerdo",
+    "icon": "🧄"
+  },
+  {
+    "id": 2,
+    "title": "Sous-vide",
+    "category": "Técnica",
+    "description": "Cocción al vacío a baja temperatura durante largos periodos. Textura perfecta.",
+    "difficulty": "Alta",
+    "icon": "🌡️"
+  },
+  {
+    "id": 3,
+    "title": "Agar-Agar",
+    "category": "Química",
+    "description": "Gelificante vegetal derivado de algas. Se usa para esferificaciones y gelatinas calientes.",
+    "pairings": "Frutas ácidas, Salsas",
+    "icon": "🧪"
+  },
+  {
+    "id": 4,
+    "title": "Maillard",
+    "category": "Teoría",
+    "description": "Reacción química entre aminoácidos y azúcares que da sabor y color dorado a la carne asada.",
+    "icon": "🥩"
+  },
+  {
+    "id": 5,
+    "title": "Coulis",
+    "category": "Técnica",
+    "description": "Salsa espesa hecha de puré de frutas o verduras coladas.",
+    "difficulty": "Baja",
+    "icon": "🍓"
+  },
+  {
+    "id": 6,
+    "title": "Kimchi",
+    "category": "Ingrediente",
+    "description": "Preparación fermentada de origen coreano a base de col china deshidratada con sal.",
+    "pairings": "Arroz, Cerdo, Tofu",
+    "icon": "🥬"
+  },
+  {
+    "id": 7,
+    "title": "Goma Xantana",
+    "category": "Química",
+    "description": "Espesante potente que no altera el sabor. Ideal para suspender partículas en líquidos.",
+    "difficulty": "Media",
+    "icon": "⚗️"
+  },
+  {
+    "id": 8,
+    "title": "Esferificac",
+    "category": "Técnica",
+    "description": "Técnica molecular para encapsular líquidos en esferas con textura de caviar.",
+    "difficulty": "Alta",
+    "icon": "🔮"
+  },
+  {
+    "id": 9,
+    "title": "Miso",
+    "category": "Ingrediente",
+    "description": "Pasta fermentada de soja. Aporta un profundo sabor umami a sopas y marinados.",
+    "pairings": "Berenjena, Pescado blanco",
+    "icon": "🥣"
+  },
+  {
+    "id": 10,
+    "title": "Confitar",
+    "category": "Técnica",
+    "description": "Cocinar un alimento sumergido en grasa a muy baja temperatura (60-90°C).",
+    "difficulty": "Media",
+    "icon": "🦆"
+  }
+]

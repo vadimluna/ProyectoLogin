@@ -11,7 +11,11 @@ const RecetasView_1 = __importDefault(require("./Components/Recetas/RecetasView"
 const Registerview_1 = __importDefault(require("./Components/Register/Registerview"));
 const Sidebar_1 = __importDefault(require("./Components/Sidebar/Sidebar"));
 const InformeView_1 = __importDefault(require("./Informes/InformeView"));
-function App() {
+const AjustesView_1 = __importDefault(require("./Components/Ajustes/AjustesView"));
+const TopBar_1 = __importDefault(require("./TopBar/TopBar"));
+const EnciclopediaView_1 = __importDefault(require("./Enciclopedia/EnciclopediaView"));
+const ThemeContext_1 = require("./Context/ThemeContext");
+function AppContent() {
     const [loggedIn, setLoggedIn] = (0, react_1.useState)(false);
     const [currentPage, setCurrentPage] = (0, react_1.useState)("Laboratorio");
     const [username, setUsername] = (0, react_1.useState)("");
@@ -72,14 +76,21 @@ function App() {
     const renderContent = () => {
         switch (currentPage) {
             case "Laboratorio":
-                return (0, jsx_runtime_1.jsx)(LaboratorioView_1.default, {});
+                return ((0, jsx_runtime_1.jsx)(LaboratorioView_1.default, { onSaveSuccess: () => setCurrentPage("Mis recetas") }));
             case "Mis recetas":
-                return (0, jsx_runtime_1.jsx)(RecetasView_1.default, {});
+                return ((0, jsx_runtime_1.jsx)(RecetasView_1.default, { onNavigateToLab: () => setCurrentPage("Laboratorio") }));
             case "Informes":
-                // Pasamos el usuario para que cargue SU historial
                 return (0, jsx_runtime_1.jsx)(InformeView_1.default, { currentUser: username || "Chef" });
+            case "Ajustes":
+                return ((0, jsx_runtime_1.jsx)(AjustesView_1.default, { username: username || "Chef", onLogout: handleLogout }));
+            case "Enciclopedia":
+                return (0, jsx_runtime_1.jsx)(EnciclopediaView_1.default, {});
             default:
-                return ((0, jsx_runtime_1.jsxs)("div", { style: { padding: "40px", textAlign: "center", color: "#555" }, children: [(0, jsx_runtime_1.jsx)("h1", { children: currentPage }), (0, jsx_runtime_1.jsx)("p", { children: "Pr\u00F3ximamente..." })] }));
+                return ((0, jsx_runtime_1.jsxs)("div", { style: {
+                        padding: "40px",
+                        textAlign: "center",
+                        color: "var(--text-secondary)",
+                    }, children: [(0, jsx_runtime_1.jsx)("h1", { children: currentPage }), (0, jsx_runtime_1.jsx)("p", { children: "Pr\u00F3ximamente..." })] }));
         }
     };
     if (!loggedIn) {
@@ -89,8 +100,15 @@ function App() {
                     setError(msg);
                 } }));
         }
-        return ((0, jsx_runtime_1.jsx)("div", { className: "login-wrapper", children: (0, jsx_runtime_1.jsxs)("div", { className: "login-box", children: [(0, jsx_runtime_1.jsx)("div", { className: "login-banner", children: (0, jsx_runtime_1.jsxs)("div", { className: "banner-content", children: [(0, jsx_runtime_1.jsx)("h1", { children: "CookLab" }), (0, jsx_runtime_1.jsx)("p", { children: "Tu laboratorio de sabores" })] }) }), (0, jsx_runtime_1.jsxs)("div", { className: "login-form-section", children: [(0, jsx_runtime_1.jsx)("h2", { children: "Bienvenido mi chef!" }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDC64" }), (0, jsx_runtime_1.jsx)("input", { type: "text", placeholder: "Usuario", value: username, onChange: (e) => setUsername(e.target.value) })] }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDD12" }), (0, jsx_runtime_1.jsx)("input", { type: "password", placeholder: "Contrase\u00F1a", value: password, onChange: (e) => setPassword(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleLogin() })] }), (0, jsx_runtime_1.jsx)("div", { className: "form-options", children: (0, jsx_runtime_1.jsx)("span", { className: "forgot-pass", style: { cursor: "pointer", color: "#666", fontSize: "0.9rem" }, children: "\u00BFOlvidaste tu contrase\u00F1a?" }) }), error && (0, jsx_runtime_1.jsx)("div", { className: "error-msg", children: error }), (0, jsx_runtime_1.jsx)("button", { className: "btn-login", onClick: handleLogin, children: "Login" }), (0, jsx_runtime_1.jsxs)("p", { className: "register-text", children: ["\u00BFNuevo?", " ", (0, jsx_runtime_1.jsx)("span", { onClick: () => setViewMode("register"), children: "Crear cuenta" })] })] })] }) }));
+        return ((0, jsx_runtime_1.jsx)("div", { className: "login-wrapper", children: (0, jsx_runtime_1.jsxs)("div", { className: "login-box", children: [(0, jsx_runtime_1.jsx)("div", { className: "login-banner", children: (0, jsx_runtime_1.jsxs)("div", { className: "banner-content", children: [(0, jsx_runtime_1.jsx)("h1", { children: "CookLab" }), (0, jsx_runtime_1.jsx)("p", { children: "Tu laboratorio de sabores" })] }) }), (0, jsx_runtime_1.jsxs)("div", { className: "login-form-section", children: [(0, jsx_runtime_1.jsx)("h2", { children: "Bienvenido mi chef!" }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDC64" }), (0, jsx_runtime_1.jsx)("input", { type: "text", placeholder: "Usuario", value: username, onChange: (e) => setUsername(e.target.value) })] }), (0, jsx_runtime_1.jsxs)("div", { className: "input-group", children: [(0, jsx_runtime_1.jsx)("span", { className: "input-icon", children: "\uD83D\uDD12" }), (0, jsx_runtime_1.jsx)("input", { type: "password", placeholder: "Contrase\u00F1a", value: password, onChange: (e) => setPassword(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleLogin() })] }), (0, jsx_runtime_1.jsx)("div", { className: "form-options", children: (0, jsx_runtime_1.jsx)("span", { className: "forgot-pass", style: {
+                                        cursor: "pointer",
+                                        color: "var(--text-secondary)",
+                                        fontSize: "0.9rem",
+                                    }, children: "\u00BFOlvidaste tu contrase\u00F1a?" }) }), error && (0, jsx_runtime_1.jsx)("div", { className: "error-msg", children: error }), (0, jsx_runtime_1.jsx)("button", { className: "btn-login", onClick: handleLogin, children: "Login" }), (0, jsx_runtime_1.jsxs)("p", { className: "register-text", children: ["\u00BFNuevo?", " ", (0, jsx_runtime_1.jsx)("span", { onClick: () => setViewMode("register"), children: "Crear cuenta" })] })] })] }) }));
     }
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "app-layout", children: [(0, jsx_runtime_1.jsx)(Sidebar_1.default, { onLogout: handleLogout, onNavigate: setCurrentPage, currentPage: currentPage, username: username || "Chef" }), (0, jsx_runtime_1.jsx)("main", { className: "main-content", children: renderContent() })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "app-layout", children: [(0, jsx_runtime_1.jsx)(Sidebar_1.default, { onLogout: handleLogout, onNavigate: setCurrentPage, currentPage: currentPage, username: username || "Chef" }), (0, jsx_runtime_1.jsxs)("main", { className: "main-content", children: [(0, jsx_runtime_1.jsx)(TopBar_1.default, { username: username || "Chef", onNavigateSettings: () => setCurrentPage("Ajustes"), onLogout: handleLogout }), renderContent()] })] }));
+}
+function App() {
+    return ((0, jsx_runtime_1.jsx)(ThemeContext_1.ThemeProvider, { children: (0, jsx_runtime_1.jsx)(AppContent, {}) }));
 }
 exports.default = App;

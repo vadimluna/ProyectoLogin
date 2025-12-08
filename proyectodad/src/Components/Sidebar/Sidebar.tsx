@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sidebar.css";
 
-// Añadimos "Informes" al tipo Page aquí también
+
 type Page =
   | "Laboratorio"
   | "Mis recetas"
@@ -25,7 +25,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   currentPage,
   username = "Usuario",
 }) => {
-  // Añadimos "Informes" a la lista del menú
   const menuItems: Page[] = [
     "Laboratorio",
     "Mis recetas",
@@ -39,7 +38,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div className="sidebar">
-      {/* Brand */}
       <div className="sidebar-brand">
         <h1 className="brand-title">
           <span className="cook">Cook</span>
@@ -47,11 +45,9 @@ const Sidebar: React.FC<SidebarProps> = ({
         </h1>
         <p className="brand-subtitle">Laboratorio de sabores</p>
       </div>
-
-      {/* Separator */}
       <div className="separator-line"></div>
 
-      {/* Profile */}
+
       <div className="sidebar-profile">
         <div className="avatar-circle">{username.charAt(0).toUpperCase()}</div>
         <div className="profile-info">

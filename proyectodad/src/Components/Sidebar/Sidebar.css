@@ -2,10 +2,10 @@
 :root {
   --sidebar-bg: #252a5e;      
   --sidebar-text: #a9b1d6;    
-  --sidebar-active: #00e676;  /* Verde neón para el botón activo */
-  --lab-green: #2ecc71;       /* VERDE "OSCURITO BONITO" para el texto */
+  --sidebar-active: #00e676;  
+  --lab-green: #2ecc71;       
   --white: #ffffff;
-  --danger-gradient: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); /* Botón salir */
+  --danger-gradient: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); 
   --line-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -20,12 +20,9 @@
     font-family: 'Poppins', sans-serif;
     color: var(--white);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-    
-    /* FIX: Quitamos el scroll horizontal feo */
     overflow-x: hidden; 
 }
 
-/* --- 1. Marca (Header) --- */
 .sidebar-brand {
     text-align: center;
     margin-bottom: 15px;
@@ -40,7 +37,7 @@
 
 .cook { color: var(--white); }
 .lab { 
-    color: var(--lab-green); /* Aquí está el verde bonito */
+    color: var(--lab-green); 
 }
 
 .brand-subtitle {
@@ -52,7 +49,7 @@
     opacity: 0.6;
 }
 
-/* --- LÍNEAS SEPARADORAS --- */
+
 .separator-line {
     height: 1px;
     background-color: var(--line-color);
@@ -60,7 +57,7 @@
     margin: 15px 0;
 }
 
-/* --- 2. Perfil --- */
+
 .sidebar-profile {
     display: flex;
     align-items: center;
@@ -96,14 +93,12 @@
     color: var(--sidebar-text);
 }
 
-/* --- 3. Menú --- */
 .sidebar-menu {
     list-style: none;
     padding: 0;
     margin: 0;
     flex-grow: 1;
     overflow-y: auto;
-    /* Scrollbar bonita y fina si es necesario */
     scrollbar-width: none; 
 }
 .sidebar-menu::-webkit-scrollbar { display: none; }
@@ -132,7 +127,7 @@
     box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
 }
 
-/* --- 4. Footer (Botón Salir Llamativo) --- */
+
 .sidebar-footer {
     margin-top: 10px;
 }
@@ -140,7 +135,6 @@
 .logout-btn {
     width: 100%;
     padding: 14px;
-    /* Degradado rojo/naranja llamativo */
     background: var(--danger-gradient); 
     color: white;
     border: none;

@@ -1,0 +1,29 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+require("./TopBar.css");
+const TopBar = ({ username = "Chef", onNavigateSettings, onLogout, }) => {
+    const [activeMenu, setActiveMenu] = (0, react_1.useState)(null);
+    const [volume, setVolume] = (0, react_1.useState)(50);
+    const menuRef = (0, react_1.useRef)(null);
+    const toggleMenu = (menuName) => {
+        if (activeMenu === menuName) {
+            setActiveMenu(null);
+        }
+        else {
+            setActiveMenu(menuName);
+        }
+    };
+    (0, react_1.useEffect)(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setActiveMenu(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "topbar-container", ref: menuRef, children: [(0, jsx_runtime_1.jsxs)("div", { className: "topbar-item", children: [(0, jsx_runtime_1.jsx)("button", { className: `icon-btn ${activeMenu === "volume" ? "active" : ""}`, onClick: () => toggleMenu("volume"), title: "Volumen", children: volume === 0 ? "🔇" : volume > 50 ? "🔊" : "🔉" }), activeMenu === "volume" && ((0, jsx_runtime_1.jsxs)("div", { className: "dropdown-panel volume-panel-centered", children: [(0, jsx_runtime_1.jsx)("div", { className: "volume-track", children: (0, jsx_runtime_1.jsx)("input", { type: "range", min: "0", max: "100", value: volume, onChange: (e) => setVolume(Number(e.target.value)), className: "vertical-slider" }) }), (0, jsx_runtime_1.jsx)("div", { className: "volume-footer", children: (0, jsx_runtime_1.jsxs)("span", { children: [volume, "%"] }) })] }))] }), (0, jsx_runtime_1.jsxs)("div", { className: "topbar-item", children: [(0, jsx_runtime_1.jsx)("button", { className: `icon-btn ${activeMenu === "help" ? "active" : ""}`, onClick: () => toggleMenu("help"), title: "Ayuda", children: "\u2753" }), activeMenu === "help" && ((0, jsx_runtime_1.jsxs)("div", { className: "dropdown-panel help-panel", children: [(0, jsx_runtime_1.jsxs)("div", { className: "help-header", children: [(0, jsx_runtime_1.jsx)("h4", { children: "\u00BFNecesitas ayuda?" }), (0, jsx_runtime_1.jsx)("p", { children: "Estamos aqu\u00ED para asistirte, Chef." })] }), (0, jsx_runtime_1.jsxs)("div", { className: "help-search", children: [(0, jsx_runtime_1.jsx)("span", { children: "\uD83D\uDD0D" }), (0, jsx_runtime_1.jsx)("input", { type: "text", placeholder: "Buscar temas..." })] }), (0, jsx_runtime_1.jsxs)("ul", { className: "help-links", children: [(0, jsx_runtime_1.jsx)("li", { children: "\uD83D\uDCC4 Gu\u00EDa de inicio r\u00E1pido" }), (0, jsx_runtime_1.jsx)("li", { children: "\uD83E\uDDEA Calibrar instrumentos" }), (0, jsx_runtime_1.jsx)("li", { children: "\u26A0\uFE0F Reportar un bug" })] }), (0, jsx_runtime_1.jsx)("button", { className: "help-contact-btn", children: "Chat con Soporte" })] }))] }), (0, jsx_runtime_1.jsxs)("div", { className: "topbar-item", children: [(0, jsx_runtime_1.jsx)("button", { className: `icon-btn ${activeMenu === "settings" ? "active" : ""}`, onClick: () => toggleMenu("settings"), title: "Ajustes", children: "\u2699\uFE0F" }), activeMenu === "settings" && ((0, jsx_runtime_1.jsxs)("div", { className: "dropdown-panel settings-panel", children: [(0, jsx_runtime_1.jsx)("h4", { children: "Ajustes R\u00E1pidos" }), (0, jsx_runtime_1.jsxs)("div", { className: "quick-row", children: [(0, jsx_runtime_1.jsx)("span", { children: "Modo Zen" }), (0, jsx_runtime_1.jsxs)("label", { className: "switch-mini", children: [(0, jsx_runtime_1.jsx)("input", { type: "checkbox" }), (0, jsx_runtime_1.jsx)("span", { className: "slider-mini" })] })] }), (0, jsx_runtime_1.jsxs)("div", { className: "quick-row", children: [(0, jsx_runtime_1.jsx)("span", { children: "Notificaciones" }), (0, jsx_runtime_1.jsxs)("label", { className: "switch-mini", children: [(0, jsx_runtime_1.jsx)("input", { type: "checkbox", defaultChecked: true }), (0, jsx_runtime_1.jsx)("span", { className: "slider-mini" })] })] }), (0, jsx_runtime_1.jsx)("div", { className: "panel-footer", onClick: onNavigateSettings, children: "Ir a configuraci\u00F3n completa \u2192" })] }))] }), (0, jsx_runtime_1.jsxs)("div", { className: "topbar-item", children: [(0, jsx_runtime_1.jsxs)("button", { className: `profile-pill ${activeMenu === "profile" ? "active" : ""}`, onClick: () => toggleMenu("profile"), children: [(0, jsx_runtime_1.jsx)("span", { className: "profile-name", children: username }), (0, jsx_runtime_1.jsx)("div", { className: "profile-avatar-small", children: username.charAt(0).toUpperCase() })] }), activeMenu === "profile" && ((0, jsx_runtime_1.jsxs)("div", { className: "dropdown-panel profile-dropdown", children: [(0, jsx_runtime_1.jsxs)("div", { className: "profile-dropdown-header", children: [(0, jsx_runtime_1.jsx)("div", { className: "big-avatar", children: username.charAt(0).toUpperCase() }), (0, jsx_runtime_1.jsxs)("div", { className: "header-text", children: [(0, jsx_runtime_1.jsx)("h5", { children: username }), (0, jsx_runtime_1.jsx)("span", { children: "Chef Ejecutivo" })] })] }), (0, jsx_runtime_1.jsx)("div", { className: "dropdown-divider" }), (0, jsx_runtime_1.jsxs)("ul", { className: "profile-menu-list", children: [(0, jsx_runtime_1.jsx)("li", { children: "\uD83D\uDC64 Mi Perfil" }), (0, jsx_runtime_1.jsx)("li", { children: "\uD83C\uDFC6 Mis Logros" }), (0, jsx_runtime_1.jsx)("li", { children: "\u2B50 Favoritos" })] }), (0, jsx_runtime_1.jsx)("div", { className: "dropdown-divider" }), (0, jsx_runtime_1.jsx)("button", { className: "logout-item-btn", onClick: onLogout, children: "Cerrar Sesi\u00F3n" })] }))] })] }));
+};
+exports.default = TopBar;

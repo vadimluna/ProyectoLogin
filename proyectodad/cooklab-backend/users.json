@@ -132,5 +132,59 @@
         "observaciones": "23131231"
       }
     ]
+  },
+  {
+    "id": 1765229820287,
+    "username": "admin1",
+    "password": "ZXC1234zxc.",
+    "email": "admin@gmail.com"
+  },
+  {
+    "id": 1765229822673,
+    "username": "admin12",
+    "password": "ZXC1234zxc.",
+    "email": "admin@gmail.com"
+  },
+  {
+    "id": 1765229846342,
+    "username": "Vadim",
+    "password": "ZXC1234zxc.",
+    "email": "Vadim@gmail.com"
+  },
+  {
+    "id": 1765229849609,
+    "username": "Vadim1234",
+    "password": "ZXC1234zxc.",
+    "email": "Vadim1234@gmail.com"
+  },
+  {
+    "id": 1765229876764,
+    "username": "VadimLuna",
+    "password": "ZXC1234zxc.",
+    "email": "VadimLuna@gmail.com"
+  },
+  {
+    "id": 1765230225418,
+    "username": "Sonia",
+    "password": "1234",
+    "email": "Sonia@gmail.com"
+  },
+  {
+    "id": 1765232463026,
+    "username": "holavadim",
+    "password": "holavadim",
+    "email": "holavadim"
+  },
+  {
+    "id": 1765233829152,
+    "username": "Oleg@gmail.com",
+    "password": "ZXC23023250zxc",
+    "email": "Oleg"
+  },
+  {
+    "id": 1765234273341,
+    "username": "vadim123",
+    "password": "$2b$08$H3JofhrE0sWHjadc2Ll5WOkigcjv/QrItesbgk.HF2kx8JCY4U0ta",
+    "email": "Vadim@gmail.com"
   }
 ]

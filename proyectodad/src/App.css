@@ -1,41 +1,228 @@
-/* Reset básico */
-body, html {
+:root {
+  --bg-page: #f0f2f5;
+  --bg-wrapper: #dfe4ea;
+  --bg-card: #ffffff;
+  
+  --text-primary: #1a202c; 
+  --text-secondary: #4a5568; 
+  --text-heading: #000000; 
+  
+  --accent-color: #6441A5;
+  --accent-gradient: linear-gradient(135deg, #2a0845 0%, #6441A5 100%);
+  
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  --bg-sidebar: #252a5e;
+  --text-sidebar: #a9b1d6;
+  --hover-sidebar: rgba(255, 255, 255, 0.1);
+  --active-sidebar: #00e676;
+  
+  --error-bg: #fee2e2;
+  --error-text: #991b1b;
+  
+  --hover-item-bg: #f1f5f9;
+}
+
+[data-theme="dark"] {
+  --bg-page: #0f172a;      
+  --bg-wrapper: #020617;
+  --bg-card: #1e293b;      
+  
+  --text-primary: #f8fafc; 
+  --text-secondary: #cbd5e1; 
+  --text-heading: #ffffff; /* BLANCO PURO para títulos */
+  
+  --accent-color: #34d399; 
+  --accent-gradient: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  
+  --input-bg: #334155;
+  --input-border: #475569;
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  
+  --bg-sidebar: #0b1120;
+  --text-sidebar: #e2e8f0; 
+  --hover-sidebar: rgba(255, 255, 255, 0.15);
+  --active-sidebar: #34d399;
+  
+  --error-bg: #450a0a;
+  --error-text: #fca5a5;
+  
+  --hover-item-bg: #334155; 
+}
+
+body, html, #root {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   height: 100%;
-  background-color: #f0f2f5;
+  width: 100%;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-page);
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: var(--bg-page);
+  padding: 0;
+  overflow-y: auto;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.ajustes-container, 
+.laboratorio-container, 
+.recetas-container,
+.informe-container,
+.enciclopedia-container {
+  background-color: transparent !important;
+  color: var(--text-primary);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.view-header h2, 
+.recetas-header-row h2, 
+.ajustes-header h1,
+.ajustes-header h2,
+.profile-info h4, 
+.profile-info h3, 
+.profile-name,    
+.panel h3,
+.informe-header h2,
+.history-panel h3,
+.card-top h4 {
+  color: var(--text-heading) !important;
+  transition: color 0.3s ease;
+}
+
+
+.sidebar {
+  background-color: var(--bg-sidebar) !important;
+  color: var(--text-sidebar) !important;
+  border-right: 1px solid var(--input-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sidebar-menu li { 
+  color: var(--text-sidebar) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu li:hover { 
+  background-color: var(--hover-sidebar) !important; 
+  color: #ffffff !important; 
+  transform: translateX(5px);
+}
+
+.sidebar-menu li.active {
+  background-color: var(--active-sidebar) !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+  font-weight: 700;
+}
+
+
+.settings-card, .login-box, .dropdown-panel {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--input-border);
+  box-shadow: var(--shadow-card) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.clean-input, .input-with-icon input, .help-search input, .lab-input, .notes-area, .lab-select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--input-border) !important;
+  transition: all 0.2s ease;
+}
+
+.clean-input:focus, .input-with-icon input:focus {
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.2) !important;
+}
+
+.icon-btn, .profile-pill {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--input-border) !important;
+}
+
+.icon-btn:hover, .profile-pill:hover {
+  background-color: var(--hover-item-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+
+.profile-menu-list li, .help-links li {
+  color: var(--text-primary) !important;
+}
+
+.profile-menu-list li:hover, .help-links li:hover {
+  background-color: var(--hover-item-bg) !important;
+  color: var(--accent-color) !important;
+  padding-left: 25px; 
+}
+
+.profile-dropdown-header {
+  background-color: var(--hover-item-bg) !important;
+  border-bottom: 1px solid var(--input-border);
+}
+
+.header-text h5 { color: var(--text-primary) !important; }
+.header-text span { color: var(--text-secondary) !important; }
+
+
+.section-title, .stat span, .setting-text p, .input-with-icon span, .form-group label {
+  color: var(--text-secondary) !important;
+}
+
+.stat strong {
+  color: var(--text-heading) !important;
 }
 
 .login-wrapper {
+  background-color: var(--bg-wrapper) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #dfe4ea; 
 }
 
 .login-box {
   display: flex;
   width: 900px;
   height: 550px;
-  background-color: #fff;
+  background-color: var(--bg-card);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-card);
   overflow: hidden; 
 }
 
-/* Lado Izquierdo */
 .login-banner {
   flex: 1;
-  background: linear-gradient(135deg, #2a0845 0%, #6441A5 100%);
+  background: var(--accent-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   position: relative;
 }
-
 
 .login-banner::before {
   content: '👨‍🍳';
@@ -52,7 +239,6 @@ body, html {
 .banner-content h1 { margin: 0; font-size: 2.5rem; }
 .banner-content p { margin: 5px 0 0; opacity: 0.8; }
 
-
 .login-form-section {
   flex: 1;
   padding: 50px;
@@ -63,17 +249,10 @@ body, html {
 
 .login-form-section h2 {
   margin: 0;
-  color: #2a0845;
+  color: var(--text-heading) !important;
   font-size: 2rem;
   margin-bottom: 10px;
 }
-
-.login-subtitle {
-  color: #a4b0be;
-  margin-bottom: 30px;
-  font-size: 0.9rem;
-}
-
 
 .input-group {
   position: relative;
@@ -85,25 +264,26 @@ body, html {
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: #a4b0be;
+  color: var(--text-secondary);
   font-size: 1.1rem;
 }
 
 .input-group input {
   width: 100%;
   padding: 15px 15px 15px 45px; 
-  border: 1px solid #e1e1e1;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
   border-radius: 30px; 
   outline: none;
   font-size: 0.95rem;
-  color: #333;
-  transition: 0.3s;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
 .input-group input:focus {
-  border-color: #6441A5;
-  box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.1);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.2);
 }
 
 .form-options {
@@ -113,14 +293,14 @@ body, html {
 }
 
 .forgot-pass {
-  color: #6441A5;
+  color: var(--accent-color);
   font-size: 0.85rem;
   cursor: pointer;
   font-weight: 600;
 }
 
 .btn-login {
-  background: #2a0845;
+  background: var(--accent-gradient);
   color: white;
   border: none;
   padding: 15px;
@@ -128,11 +308,11 @@ body, html {
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
 }
 
 .btn-login:hover {
-  background: #4c1a75;
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 
@@ -140,68 +320,31 @@ body, html {
   margin-top: 20px;
   text-align: center;
   font-size: 0.9rem;
-  color: #777;
+  color: var(--text-secondary);
 }
 
 .register-text span {
-  color: #6441A5;
+  color: var(--accent-color);
   font-weight: bold;
   cursor: pointer;
   margin-left: 5px;
 }
 
 .error-msg {
-  color: #e74c3c;
+  color: var(--error-text);
   font-size: 0.85rem;
   margin-bottom: 15px;
-  background: #fadbd8;
+  background: var(--error-bg);
   padding: 10px;
   border-radius: 8px;
   text-align: center;
 }
 
-/* Layout General */
-.app-layout {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.main-content {
-  flex-grow: 1;
-  background-color: #f4f7f6;
-  padding: 20px;
-  overflow-y: auto;
-}
-/* =========================================
-   ANIMACIÓN GLOBAL DE ENTRADA (FADE IN)
-   ========================================= */
 @keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================
-   ANIMACIÓN GLOBAL DE ENTRADA (FADE IN)
-   ========================================= */
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-/* Opcional: Clase de utilidad si quieres aplicarla directamente en el HTML */
 .animate-fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }

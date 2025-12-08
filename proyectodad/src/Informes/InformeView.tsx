@@ -21,7 +21,7 @@ const InformeView: React.FC<InformeViewProps> = ({
   currentUser = "Invitado",
 }) => {
   const [savedReports, setSavedReports] = useState<ReportData[]>([]);
-  // Estados de vista: formulario, vista previa individual, vista previa global
+
   const [viewState, setViewState] = useState<
     "form" | "previewSingle" | "previewAll"
   >("form");
@@ -38,10 +38,8 @@ const InformeView: React.FC<InformeViewProps> = ({
     observaciones: "",
   });
 
-  // --- 1. CARGA INICIAL DE DATOS ---
   useEffect(() => {
     fetchReports();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const fetchReports = async () => {
@@ -67,7 +65,6 @@ const InformeView: React.FC<InformeViewProps> = ({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // --- NAVEGACIÓN Y LIMPIEZA ---
   const handleNew = () => {
     setFormData({
       id: "",
@@ -101,14 +98,12 @@ const InformeView: React.FC<InformeViewProps> = ({
     setViewState("previewAll");
   };
 
-  // --- 2. GUARDAR (CREA NUEVO REGISTRO SIEMPRE) ---
   const handleSaveToDB = async () => {
     if (!formData.titulo) {
       setStatusMsg("⚠️ El título es obligatorio.");
       return;
     }
 
-    // Al eliminar el ID, forzamos al backend a crear uno nuevo
     const reportAsNew = { ...formData, id: "" };
 
     try {
@@ -132,7 +127,6 @@ const InformeView: React.FC<InformeViewProps> = ({
     }
   };
 
-  // Borrar informe
   const handleDelete = async (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     if (!window.confirm("¿Eliminar este informe del historial?")) return;
@@ -148,7 +142,6 @@ const InformeView: React.FC<InformeViewProps> = ({
     }
   };
 
-  // Cargar para editar (copia los datos al formulario)
   const loadReport = (report: ReportData) => {
     setFormData(report);
     setViewState("form");
@@ -156,7 +149,6 @@ const InformeView: React.FC<InformeViewProps> = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // --- 3. GENERADOR PDF ---
   const generatePDFPage = (
     doc: jsPDF,
     data: ReportData,
@@ -244,7 +236,6 @@ const InformeView: React.FC<InformeViewProps> = ({
     setStatusMsg("📚 Historial completo descargado.");
   };
 
-  // --- VISTA PREVIA PAPEL (COMPONENTE UI) ---
   const PaperPreview = ({ data }: { data: ReportData }) => (
     <div className="inf-paper-preview">
       <div className="paper-header">
@@ -293,7 +284,6 @@ const InformeView: React.FC<InformeViewProps> = ({
 
       {statusMsg && <div className="inf-status-bar">{statusMsg}</div>}
 
-      {/* --- MODO FORMULARIO --- */}
       {viewState === "form" && (
         <>
           <div className="inf-card fade-in">
@@ -419,7 +409,6 @@ const InformeView: React.FC<InformeViewProps> = ({
         </>
       )}
 
-      {/* --- VISTA PREVIA INDIVIDUAL --- */}
       {viewState === "previewSingle" && (
         <div className="inf-preview-container fade-in">
           <div className="inf-actions-bar sticky-top">
@@ -444,8 +433,6 @@ const InformeView: React.FC<InformeViewProps> = ({
           <PaperPreview data={formData} />
         </div>
       )}
-
-      {/* --- VISTA PREVIA TOTAL --- */}
       {viewState === "previewAll" && (
         <div className="inf-preview-container fade-in">
           <div className="inf-actions-bar sticky-top">

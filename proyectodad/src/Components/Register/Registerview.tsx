@@ -1,132 +1,144 @@
 import React, { useState } from "react";
 import "./RegisterView.css";
 
-interface RegisterViewProps {
-  onBackToLogin: (message: string) => void;
+interface RegisterProps {
+  onBackToLogin: (msg: string) => void;
 }
 
-const RegisterView: React.FC<RegisterViewProps> = ({ onBackToLogin }) => {
+const RegisterView: React.FC<RegisterProps> = ({ onBackToLogin }) => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const validatePasswordRules = (pwd: string) => {
+    if (pwd.length < 6) return "Mínimo 6 caracteres.";
+    if (!/[A-Z]/.test(pwd)) return "Falta una mayúscula.";
+    if (!/[0-9]/.test(pwd)) return "Falta un número.";
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd))
+      return "Falta un símbolo (!@#$...).";
+    return null;
+  };
 
   const handleRegister = async () => {
     setError("");
-    setSuccess("");
+
+    if (!username || !password || !confirmPassword || !email) {
+      setError("Por favor, rellena todos los campos.");
+      return;
+    }
 
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden.");
       return;
     }
 
-    if (!username || !email || !password) {
-      setError("Todos los campos son obligatorios.");
+    const ruleError = validatePasswordRules(password);
+    if (ruleError) {
+      setError(`Contraseña insegura: ${ruleError}`);
       return;
     }
-
-    setIsLoading(true);
 
     try {
       const response = await fetch("http://localhost:3001/api/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, email }),
       });
 
       const data = await response.json();
 
-      if (response.status === 201) {
-        setSuccess(
-          data.message ||
-            "¡Registro exitoso! Serás redirigido para iniciar sesión."
-        );
-
-        setTimeout(() => {
-          onBackToLogin(
-            data.message || "¡Registro exitoso! Ya puedes iniciar sesión."
-          );
-        }, 2000);
+      if (response.ok) {
+        onBackToLogin("¡Cuenta creada con éxito! Por favor, inicia sesión.");
       } else {
-        setError(data.message || "Error al registrar el usuario.");
+        setError(data.message || "Error al registrarse.");
       }
     } catch (err) {
-      setError(
-        "Error de conexión con el servidor. Asegúrate de que el backend esté activo."
-      );
-    } finally {
-      setIsLoading(false);
+      setError("Error de conexión con el servidor.");
     }
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <h1 className="register-title">
-          <span className="cook">Cook</span>
-          <span className="lab">Lab</span>
-        </h1>
-        <p className="register-subtitle">Laboratorio de sabores</p>
-
-        <h2 className="register-welcome">Crea tu cuenta</h2>
-
-        <div className="register-inputs">
-          <input
-            type="text"
-            placeholder="Nombre de Usuario"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            disabled={isLoading}
-          />
-          <input
-            type="email"
-            placeholder="Correo Electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isLoading}
-          />
-          <input
-            type="password"
-            placeholder="Contraseña (Mínimo 8 caracteres, mayúscula, símbolo)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={isLoading}
-          />
-          <input
-            type="password"
-            placeholder="Confirmar Contraseña"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            disabled={isLoading}
-          />
+    <div className="register-wrapper">
+      <div className="register-box">
+        <div className="register-banner">
+          <div className="banner-content">
+            <h1>CookLab</h1>
+            <p>Únete al laboratorio</p>
+            <div className="banner-icon">👨‍🍳</div>
+          </div>
         </div>
 
-        {(error || success) && (
-          <div className={error ? "message error" : "message success"}>
-            {error || success}
-          </div>
-        )}
+        <div className="register-form-section">
+          <h2>Crear Cuenta</h2>
+          <p className="subtitle">Empieza tu viaje culinario hoy</p>
 
-        <div className="register-buttons">
-          <button
-            className="btn enter"
-            onClick={handleRegister}
-            disabled={isLoading}
+          <div className="input-group">
+            <span className="input-icon">✉️</span>
+            <input
+              type="email"
+              placeholder="Correo Electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-icon">👤</span>
+            <input
+              type="text"
+              placeholder="Nombre de Usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-icon">🔒</span>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-icon">🔐</span>
+            <input
+              type="password"
+              placeholder="Confirmar Contraseña"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleRegister()}
+            />
+          </div>
+
+          <p
+            style={{
+              fontSize: "0.75rem",
+              color: "var(--text-secondary)",
+              marginTop: "-15px",
+              marginBottom: "20px",
+              textAlign: "left",
+              paddingLeft: "10px",
+              opacity: 0.8,
+            }}
           >
-            {isLoading ? "Registrando..." : "Registrarme"}
+            ℹ️ Mín. 6 chars, 1 mayús, 1 num y 1 símbolo.
+          </p>
+
+          {error && <div className="error-msg">{error}</div>}
+
+          <button className="btn-register" onClick={handleRegister}>
+            Registrarse
           </button>
-          <button
-            className="btn back-login"
-            onClick={() => onBackToLogin("")}
-            disabled={isLoading}
-          >
-            Volver a Iniciar Sesión
-          </button>
+
+          <p className="login-link">
+            ¿Ya tienes cuenta?{" "}
+            <span onClick={() => onBackToLogin("")}>Inicia Sesión</span>
+          </p>
         </div>
       </div>
     </div>
@@ -134,4 +146,3 @@ const RegisterView: React.FC<RegisterViewProps> = ({ onBackToLogin }) => {
 };
 
 export default RegisterView;
-  

@@ -1,270 +1,260 @@
-/* =========================================
-   RECETAS VIEW - ALINEACIÓN PERFECTA V6
-   ========================================= */
-
 .recetas-container {
-    padding: 40px 60px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f4f7f6;
-    min-height: 100vh;
-    animation: fadeIn 0.6s ease-out forwards;
-    max-width: 1600px;
-    margin: 0 auto;
+  padding: 40px;
+  padding-top: 120px; 
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+  min-height: 100vh; 
+  box-sizing: border-box;
 }
 
-/* --- TÍTULO --- */
-.recetas-container h2 {
-    font-size: 3rem;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 50px;
-    color: #3d0952;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
-    position: relative;
-}
-
-.recetas-container h2::before {
-    content: "📜 "; 
-    margin-right: 10px;
-}
-
-.recetas-container h2::after {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 5px;
-    background: linear-gradient(90deg, #1e6f75, #c78f2e);
-    margin: 15px auto 0;
-    border-radius: 10px;
-}
-
-/* --- BARRA DE HERRAMIENTAS --- */
-.recetas-toolbar {
+.recetas-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    width: 100%;
-    height: 55px;
-    box-sizing: border-box;
-    /* Ajuste clave: padding cero para control manual de márgenes */
-    padding: 0; 
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--input-border);
+    padding-bottom: 20px;
+}
+
+.recetas-header-row h2 {
+    margin: 0;
+    color: var(--text-heading);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.recetas-toolbar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 2px solid #e9ecef;
-    border-radius: 16px;
-    padding: 0 25px;
-    height: 100%;
-    width: 450px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    /* MOVIDO A LA DERECHA (Alineación con borde tarjeta) */
-    margin-left: 20px; 
-}
-
-.search-bar:focus-within {
-    border-color: #1e6f75;
-    box-shadow: 0 4px 20px rgba(30, 111, 117, 0.2);
-    transform: translateY(-1px);
-}
-
-.search-icon {
-    margin-right: 15px;
-    font-size: 1.2rem;
-    color: #c78f2e;
+    position: relative;
 }
 
 .search-bar input {
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 1.05rem;
-    width: 100%;
-    color: #495057;
-    height: 100%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    width: 250px;
+    transition: all 0.2s;
+    font-size: 0.95rem;
 }
 
-/* Botón Añadir Receta */
-.recetas-toolbar .btn-lab.secondary {
-    background: linear-gradient(135deg, #3d0952 0%, #5e1b75 100%);
-    color: white;
-    padding: 0 35px;
-    height: 100%;
-    border-radius: 16px;
-    font-weight: 700;
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
     font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.btn-add-lab {
+    background: var(--accent-gradient);
+    color: white;
     border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(61, 9, 82, 0.25);
-    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    /* MOVIDO A LA DERECHA (Pegado al borde derecho para alinear con tarjeta) */
-    margin-right: 0; 
-    /* Pequeño ajuste visual para compensar sombra */
-    transform: translateX(5px); 
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.recetas-toolbar .btn-lab.secondary:hover {
-    transform: translateX(5px) translateY(-2px);
-    box-shadow: 0 8px 20px rgba(61, 9, 82, 0.35);
+.btn-add-lab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
-/* --- TABLA --- */
 .recetas-table-wrapper {
-    width: 100%;
-    overflow: visible; 
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
 }
 
 .recetas-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 18px; 
-    margin-top: -18px;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    overflow: hidden;
 }
 
-/* Cabecera */
-.recetas-table thead th {
-    color: #6c757d;
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    padding: 0 35px 10px 35px;
+.recetas-table th, .recetas-table td {
+    padding: 18px 20px;
     text-align: left;
-    border: none;
-    opacity: 0.8;
+    border-bottom: 1px solid var(--input-border);
+    color: var(--text-primary);
 }
 
-.recetas-table thead th:last-child {
-    text-align: center;
-}
-
-/* Cuerpo (Tarjetas) */
-.recetas-table tbody tr {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
-    border-radius: 20px; 
-}
-
-.recetas-table tbody tr td:first-child {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-.recetas-table tbody tr td:last-child {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.recetas-table tbody tr:hover {
-    transform: scale(1.015) translateY(-2px);
-    box-shadow: 0 15px 35px -5px rgba(30, 111, 117, 0.15);
-    z-index: 10;
-    position: relative;
-}
-
-.recetas-table td {
-    padding: 28px 35px;
-    color: #555;
-    font-size: 1.05rem;
-    vertical-align: middle;
-    background-color: white;
-    border: none; 
-}
-
-/* --- NOMBRES DE RECETAS (Estilo Mejorado) --- */
-.recetas-table td:first-child {
-    font-weight: 800; /* Letra muy gruesa */
-    color: #3d0952; /* Color morado principal */
-    font-size: 1.4rem; /* Texto más grande */
-    letter-spacing: -0.5px;
-    /* Sombra suave para darle volumen al texto */
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.05); 
-    transition: color 0.2s ease;
-}
-
-/* Efecto al pasar el mouse por la fila */
-.recetas-table tbody tr:hover td:first-child {
-    color: #1e6f75; /* Cambia a cian al hacer hover */
-}
-
-/* Badge Complejidad */
-.badge-complexity {
-    padding: 8px 18px;
-    border-radius: 30px;
+.recetas-table th {
+    background: var(--hover-item-bg);
+    font-weight: 800;
+    color: var(--text-secondary);
+    text-transform: uppercase;
     font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.recetas-table tr:last-child td {
+    border-bottom: none;
+}
+
+.badge-complexity {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     display: inline-block;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.badge-complexity.baja { background-color: #dcfce7; color: #166534; }
-.badge-complexity.media { background-color: #ffedd5; color: #9a3412; }
-.badge-complexity.alta { background-color: #fee2e2; color: #991b1b; }
+.badge-complexity.baja { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+.badge-complexity.media { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+.badge-complexity.alta { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
-/* Botones de acción */
+.truncate-cell {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-secondary);
+}
+
 .actions {
     display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
+    gap: 10px;
 }
 
-.recetas-table .btn-lab {
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    border-radius: 14px;
-    font-size: 1.4rem;
-    border: none;
+.btn-lab.edit, .btn-lab.delete {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background: var(--bg-page);
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.btn-lab.edit:hover { background: #e0f2fe; border-color: #38bdf8; }
+.btn-lab.delete:hover { background: #fee2e2; border-color: #f87171; }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s;
+}
+
+.recipe-form-card {
+  background: var(--bg-card);
+  width: 500px;
+  max-width: 90%;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--input-border);
+  position: relative;
+  z-index: 3001;
+}
+
+.recipe-form-card h3 {
+    margin-top: 0;
+    color: var(--text-heading);
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.form-group { margin-bottom: 20px; }
+.form-row { display: flex; gap: 20px; margin-bottom: 20px; }
+.form-group.half { flex: 1; margin-bottom: 0; }
+
+.recipe-form-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.recipe-form-card input, 
+.recipe-form-card textarea,
+.lab-select-simple {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.recipe-form-card input:focus,
+.recipe-form-card textarea:focus,
+.lab-select-simple:focus {
     outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.1);
 }
 
-/* Editar */
-.recetas-table .btn-lab.edit { 
-    background-color: #f0fdfa; 
-    border: 1px solid #ccfbf1;
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
 }
-.recetas-table .btn-lab.edit:hover { 
-    background-color: #3d0952; 
-    border-color: #3d0952;
-    transform: translateY(-4px) rotate(-5deg);
-    box-shadow: 0 5px 15px rgba(61, 9, 82, 0.2);
-}
-.recetas-table .btn-lab.edit:hover::after { content: '✏️'; filter: grayscale(1) invert(1); }
 
-/* Borrar */
-.recetas-table .btn-lab.delete { 
-    background-color: #fff1f2; 
-    border: 1px solid #ffe4e6;
+.btn-cancel {
+    background: transparent;
+    border: 1px solid var(--input-border);
+    padding: 12px 24px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
 }
-.recetas-table .btn-lab.delete:hover { 
-    background-color: #c92a2a; 
-    border-color: #c92a2a;
-    transform: translateY(-4px) rotate(5deg);
-    box-shadow: 0 5px 15px rgba(201, 42, 42, 0.2);
+
+.btn-cancel:hover { background: var(--hover-item-bg); color: var(--text-primary); }
+
+.btn-save {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
 }
-.recetas-table .btn-lab.delete:hover::after { content: '🗑️'; filter: grayscale(1) invert(1); }
+
+.btn-save:hover { opacity: 0.9; transform: translateY(-1px); }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 require("./Sidebar.css");
 const Sidebar = ({ onLogout, onNavigate, currentPage, username = "Usuario", }) => {
-    // Añadimos "Informes" a la lista del menú
     const menuItems = [
         "Laboratorio",
         "Mis recetas",

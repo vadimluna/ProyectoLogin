@@ -5,6 +5,10 @@ import RecetasView from "./Components/Recetas/RecetasView";
 import RegisterView from "./Components/Register/Registerview";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import InformeView from "./Informes/InformeView";
+import AjustesView from "./Components/Ajustes/AjustesView";
+import TopBar from "./TopBar/TopBar";
+import EnciclopediaView from "./Enciclopedia/EnciclopediaView";
+import { ThemeProvider } from "./Context/ThemeContext";
 
 export type Page =
   | "Laboratorio"
@@ -16,7 +20,7 @@ export type Page =
   | "Ajustes"
   | "Informes";
 
-function App() {
+function AppContent() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>("Laboratorio");
   const [username, setUsername] = useState("");
@@ -80,15 +84,32 @@ function App() {
   const renderContent = () => {
     switch (currentPage) {
       case "Laboratorio":
-        return <LaboratorioView />;
+        return (
+          <LaboratorioView
+            onSaveSuccess={() => setCurrentPage("Mis recetas")}
+          />
+        );
       case "Mis recetas":
-        return <RecetasView />;
+        return (
+          <RecetasView onNavigateToLab={() => setCurrentPage("Laboratorio")} />
+        );
       case "Informes":
-        // Pasamos el usuario para que cargue SU historial
         return <InformeView currentUser={username || "Chef"} />;
+      case "Ajustes":
+        return (
+          <AjustesView username={username || "Chef"} onLogout={handleLogout} />
+        );
+      case "Enciclopedia":
+        return <EnciclopediaView />;
       default:
         return (
-          <div style={{ padding: "40px", textAlign: "center", color: "#555" }}>
+          <div
+            style={{
+              padding: "40px",
+              textAlign: "center",
+              color: "var(--text-secondary)",
+            }}
+          >
             <h1>{currentPage}</h1>
             <p>Próximamente...</p>
           </div>
@@ -141,7 +162,11 @@ function App() {
             <div className="form-options">
               <span
                 className="forgot-pass"
-                style={{ cursor: "pointer", color: "#666", fontSize: "0.9rem" }}
+                style={{
+                  cursor: "pointer",
+                  color: "var(--text-secondary)",
+                  fontSize: "0.9rem",
+                }}
               >
                 ¿Olvidaste tu contraseña?
               </span>
@@ -170,8 +195,23 @@ function App() {
         currentPage={currentPage}
         username={username || "Chef"}
       />
-      <main className="main-content">{renderContent()}</main>
+      <main className="main-content">
+        <TopBar
+          username={username || "Chef"}
+          onNavigateSettings={() => setCurrentPage("Ajustes")}
+          onLogout={handleLogout}
+        />
+        {renderContent()}
+      </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
